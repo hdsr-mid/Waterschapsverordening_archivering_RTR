@@ -1,3 +1,11 @@
+"""
+RTR (Registratie Toepasbare Regels) data archiving module.
+
+This module handles the main archiving logic for RTR data from the IPLO Omgevingswet API.
+It processes activities, extracts werkzaamheden and regelbeheerobjecten, and generates
+Excel reports and optional STTR XML files.
+"""
+
 import os
 import requests
 import urllib.parse
@@ -9,6 +17,17 @@ from powerbi import PowerBIData
 from commands import ArgumentParser  
 
 class RTR:
+    """
+    Main RTR archiving class.
+    
+    This class handles the complete archiving workflow:
+    - Fetching activity data from the IPLO RTR API
+    - Processing werkzaamheden and regelbeheerobjecten
+    - Generating Excel reports with color-coded dates
+    - Optionally archiving STTR DMN files
+    - Optionally exporting werkingsgebieden mappings
+    """
+    
     def __init__(self, args):
         self.args = args 
         self.base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__))) 
