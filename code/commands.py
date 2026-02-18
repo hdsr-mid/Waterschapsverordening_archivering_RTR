@@ -1,9 +1,29 @@
+"""
+Command-line argument parser for the RTR archiving application.
+
+This module handles parsing and validation of command-line arguments
+for configuring the RTR data archiving process.
+"""
+
 import argparse
 from datetime import datetime
 
 class ArgumentParser:
+    """Handles parsing of command-line arguments for RTR archiving."""
+    
     @staticmethod
     def parse_command_line_arguments():
+        """
+        Parse command-line arguments for the RTR archiving application.
+        
+        Returns:
+            argparse.Namespace: Parsed arguments with the following attributes:
+                - overheid (str): Government organization name (spaces converted from underscores)
+                - env (str): Environment ('prod' or 'pre')
+                - date (str): Date in DD-MM-YYYY format
+                - sttr (bool): Flag to archive STTR files
+                - location (bool): Flag to archive werkingsgebieden
+        """
         parser = argparse.ArgumentParser(description="Process some environment settings and actions.")
         parser.add_argument('--overheid', type=str, default="Hoogheemraadschap_De_Stichtse_Rijnlanden",
                             help='Overheid setting, default is "Hoogheemraadschap De Stichtse Rijnlanden".')
